@@ -61,13 +61,13 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
+    <div className="min-h-screen bg-gradient-background">
       {/* Header */}
-      <header className="bg-card shadow-card border-b border-border/50">
+      <header className="bg-card/95 backdrop-blur-lg shadow-card border-b border-border/50">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-gradient-primary rounded-lg">
+              <div className="p-2 bg-gradient-primary rounded-lg shadow-glow">
                 <Brain className="h-8 w-8 text-white" />
               </div>
               <div>
@@ -129,7 +129,7 @@ const Index = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-card border-t border-border/50 mt-16">
+      <footer className="bg-card/90 backdrop-blur-lg border-t border-border/50 mt-16">
         <div className="container mx-auto px-4 py-6">
           <div className="text-center text-sm text-muted-foreground">
             <p>LayoffAI Predictor • Advanced HR Analytics • Built with AI/ML Technologies</p>

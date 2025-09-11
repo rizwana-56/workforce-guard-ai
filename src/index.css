@@ -8,61 +8,67 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Base colors */
-    --background: 210 40% 98%;
-    --foreground: 222 84% 5%;
+    /* Blue to Purple Gradient Theme */
+    --background: 245 100% 3%;
+    --foreground: 0 0% 100%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 84% 5%;
+    --card: 245 50% 8%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 84% 5%;
+    --popover: 245 50% 8%;
+    --popover-foreground: 0 0% 100%;
 
-    /* Professional blue theme for HR dashboard */
-    --primary: 215 70% 50%;
+    /* AI Theme: Blue to Purple */
+    --primary: 260 100% 65%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 215 100% 70%;
+    --primary-glow: 280 100% 75%;
+    --primary-dark: 240 100% 55%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 84% 5%;
+    --secondary: 245 30% 15%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 245 30% 12%;
+    --muted-foreground: 245 15% 70%;
 
-    --accent: 210 40% 96%;
-    --accent-foreground: 215 70% 50%;
+    --accent: 260 100% 65%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Risk assessment colors */
-    --success: 142 76% 36%;
+    /* AI Prediction Colors: Red/Green */
+    --success: 142 76% 50%;
     --success-foreground: 0 0% 100%;
-    --success-light: 142 69% 58%;
+    --success-light: 142 60% 60%;
+    --success-dark: 142 80% 40%;
 
-    --warning: 25 95% 53%;
-    --warning-foreground: 0 0% 100%;
-    --warning-light: 43 96% 56%;
+    --warning: 45 93% 58%;
+    --warning-foreground: 245 100% 3%;
+    --warning-light: 45 93% 70%;
 
     --danger: 0 84% 60%;
     --danger-foreground: 0 0% 100%;
-    --danger-light: 0 91% 71%;
+    --danger-light: 0 75% 70%;
+    --danger-dark: 0 90% 50%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 215 70% 50%;
+    --border: 245 30% 20%;
+    --input: 245 30% 15%;
+    --ring: 260 100% 65%;
 
-    /* Gradients for modern appeal */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-success: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success-light)));
-    --gradient-warning: linear-gradient(135deg, hsl(var(--warning)), hsl(var(--warning-light)));
-    --gradient-danger: linear-gradient(135deg, hsl(var(--danger)), hsl(var(--danger-light)));
-    --gradient-subtle: linear-gradient(135deg, hsl(210 40% 99%), hsl(215 50% 97%), hsl(220 60% 95%));
+    /* Blue to Purple AI Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(240 100% 55%), hsl(260 100% 65%), hsl(280 100% 75%));
+    --gradient-success: linear-gradient(135deg, hsl(142 80% 40%), hsl(142 76% 50%), hsl(142 60% 60%));
+    --gradient-warning: linear-gradient(135deg, hsl(45 93% 50%), hsl(45 93% 58%), hsl(45 93% 70%));
+    --gradient-danger: linear-gradient(135deg, hsl(0 90% 50%), hsl(0 84% 60%), hsl(0 75% 70%));
+    --gradient-subtle: linear-gradient(135deg, hsl(240 100% 8%), hsl(250 80% 12%), hsl(260 60% 16%));
+    --gradient-background: linear-gradient(135deg, hsl(240 100% 3%), hsl(250 100% 5%), hsl(260 100% 7%));
 
-    /* Shadows and effects */
-    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.2);
-    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.3);
-    --shadow-card: 0 4px 20px -2px hsl(214 32% 91% / 0.4);
+    /* AI-themed shadows */
+    --shadow-elegant: 0 10px 40px -10px hsl(260 100% 65% / 0.4);
+    --shadow-glow: 0 0 60px hsl(280 100% 75% / 0.5);
+    --shadow-card: 0 8px 32px -4px hsl(245 50% 8% / 0.8);
+    --shadow-success: 0 0 30px hsl(142 76% 50% / 0.4);
+    --shadow-danger: 0 0 30px hsl(0 84% 60% / 0.4);
 
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

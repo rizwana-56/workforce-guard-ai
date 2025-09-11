@@ -49,41 +49,38 @@ const PredictionResults = ({ prediction }: PredictionResultsProps) => {
   return (
     <div className="space-y-6">
       {/* Main Prediction Card */}
-      <Card className={`shadow-card border-border/50 ${getGradientClass(prediction.riskLevel)} text-white`}>
-        <CardHeader className="text-center space-y-4">
-          <div className="flex justify-center">
-            {getRiskIcon(prediction.riskLevel)}
-          </div>
-          <CardTitle className="text-3xl font-bold">
-            {prediction.willBeLayedOff ? "At Risk" : "Safe"}
-          </CardTitle>
-          <CardDescription className="text-white/80 text-lg">
-            Layoff Prediction Result
-          </CardDescription>
-        </CardHeader>
-        
-        <CardContent className="space-y-6">
-          <div className="text-center space-y-2">
-            <div className="text-6xl font-bold">
-              {Math.round(prediction.confidence)}%
+        <Card className={`shadow-card border-border/50 ${getGradientClass(prediction.riskLevel)} text-white relative overflow-hidden`}>
+          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent"></div>
+          <CardHeader className="text-center space-y-4 relative z-10">
+            <div className="flex justify-center">
+              {getRiskIcon(prediction.riskLevel)}
             </div>
-            <p className="text-white/80">Confidence Level</p>
-          </div>
+            <CardTitle className="text-3xl font-bold">
+              {prediction.willBeLayedOff ? "At Risk" : "Safe"}
+            </CardTitle>
+            <CardDescription className="text-white/90 text-lg">
+              Layoff Prediction Result
+            </CardDescription>
+          </CardHeader>
           
-          <div className="flex justify-center">
-            <Badge 
-              variant="secondary" 
-              className={`px-4 py-2 text-lg font-semibold ${
-                prediction.riskLevel === "Low" ? "bg-white/20 text-white" :
-                prediction.riskLevel === "Medium" ? "bg-white/20 text-white" :
-                "bg-white/20 text-white"
-              }`}
-            >
-              {prediction.riskLevel} Risk
-            </Badge>
-          </div>
-        </CardContent>
-      </Card>
+          <CardContent className="space-y-6 relative z-10">
+            <div className="text-center space-y-2">
+              <div className="text-6xl font-bold drop-shadow-lg">
+                {Math.round(prediction.confidence)}%
+              </div>
+              <p className="text-white/90">Confidence Level</p>
+            </div>
+            
+            <div className="flex justify-center">
+              <Badge 
+                variant="secondary" 
+                className="px-4 py-2 text-lg font-semibold bg-white/20 text-white border-white/30 backdrop-blur-sm"
+              >
+                {prediction.riskLevel} Risk
+              </Badge>
+            </div>
+          </CardContent>
+        </Card>
 
       {/* Risk Analysis Dashboard */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

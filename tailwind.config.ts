@@ -36,6 +36,7 @@ export default {
           DEFAULT: "hsl(var(--success))",
           foreground: "hsl(var(--success-foreground))",
           light: "hsl(var(--success-light))",
+          dark: "hsl(var(--success-dark))",
         },
         warning: {
           DEFAULT: "hsl(var(--warning))",
@@ -46,6 +47,7 @@ export default {
           DEFAULT: "hsl(var(--danger))",
           foreground: "hsl(var(--danger-foreground))",
           light: "hsl(var(--danger-light))",
+          dark: "hsl(var(--danger-dark))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -80,11 +82,14 @@ export default {
         'gradient-warning': 'var(--gradient-warning)',
         'gradient-danger': 'var(--gradient-danger)',
         'gradient-subtle': 'var(--gradient-subtle)',
+        'gradient-background': 'var(--gradient-background)',
       },
       boxShadow: {
         'elegant': 'var(--shadow-elegant)',
         'glow': 'var(--shadow-glow)',
         'card': 'var(--shadow-card)',
+        'success': 'var(--shadow-success)',
+        'danger': 'var(--shadow-danger)',
       },
       transitionProperty: {
         'smooth': 'var(--transition-smooth)',

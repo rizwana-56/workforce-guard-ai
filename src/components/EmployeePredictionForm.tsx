@@ -44,7 +44,7 @@ const EmployeePredictionForm = ({ onSubmit, isLoading }: EmployeePredictionFormP
   const isFormValid = Object.values(formData).every(value => value !== "");
 
   return (
-    <Card className="shadow-card border-border/50 bg-gradient-subtle">
+    <Card className="shadow-card border-border/50 bg-card/95 backdrop-blur-lg">
       <CardHeader className="space-y-2">
         <div className="flex items-center gap-2">
           <User className="h-6 w-6 text-primary" />
