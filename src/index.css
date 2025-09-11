@@ -9,60 +9,60 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Base colors */
-    --background: 241 245 249;
-    --foreground: 15 23 42;
+    --background: 210 40% 98%;
+    --foreground: 222 84% 5%;
 
-    --card: 255 255 255;
-    --card-foreground: 15 23 42;
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 5%;
 
-    --popover: 255 255 255;
-    --popover-foreground: 15 23 42;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 5%;
 
     /* Professional blue theme for HR dashboard */
-    --primary: 30 64% 55%;
-    --primary-foreground: 255 255 255;
-    --primary-glow: 30 100% 70%;
+    --primary: 215 70% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 215 100% 70%;
 
-    --secondary: 226 70% 55%;
-    --secondary-foreground: 255 255 255;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 84% 5%;
 
-    --muted: 226 58% 96%;
-    --muted-foreground: 100 7% 40%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 226 58% 96%;
-    --accent-foreground: 30 64% 55%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 215 70% 50%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 255 255 255;
+    --destructive-foreground: 0 0% 100%;
 
     /* Risk assessment colors */
     --success: 142 76% 36%;
-    --success-foreground: 255 255 255;
+    --success-foreground: 0 0% 100%;
     --success-light: 142 69% 58%;
 
-    --warning: 32 95% 44%;
-    --warning-foreground: 255 255 255;
+    --warning: 25 95% 53%;
+    --warning-foreground: 0 0% 100%;
     --warning-light: 43 96% 56%;
 
     --danger: 0 84% 60%;
-    --danger-foreground: 255 255 255;
+    --danger-foreground: 0 0% 100%;
     --danger-light: 0 91% 71%;
 
-    --border: 226 29% 88%;
-    --input: 226 29% 88%;
-    --ring: 30 64% 55%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 215 70% 50%;
 
     /* Gradients for modern appeal */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
     --gradient-success: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success-light)));
     --gradient-warning: linear-gradient(135deg, hsl(var(--warning)), hsl(var(--warning-light)));
     --gradient-danger: linear-gradient(135deg, hsl(var(--danger)), hsl(var(--danger-light)));
-    --gradient-subtle: linear-gradient(135deg, hsl(218 100% 97%), hsl(220 100% 95%), hsl(226 100% 94%));
+    --gradient-subtle: linear-gradient(135deg, hsl(210 40% 99%), hsl(215 50% 97%), hsl(220 60% 95%));
 
     /* Shadows and effects */
     --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.2);
     --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.3);
-    --shadow-card: 0 4px 20px -2px hsl(226 29% 88% / 0.4);
+    --shadow-card: 0 4px 20px -2px hsl(214 32% 91% / 0.4);
 
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -87,56 +87,56 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 15 23 42;
-    --foreground: 248 250 252;
+    --background: 222 84% 5%;
+    --foreground: 210 40% 98%;
 
-    --card: 30 41% 5%;
-    --card-foreground: 248 250 252;
+    --card: 222 84% 5%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 30 41% 5%;
-    --popover-foreground: 248 250 252;
+    --popover: 222 84% 5%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 30 100% 70%;
-    --primary-foreground: 15 23 42;
-    --primary-glow: 30 100% 80%;
+    --primary: 215 100% 70%;
+    --primary-foreground: 222 84% 5%;
+    --primary-glow: 215 100% 80%;
 
-    --secondary: 226 70% 55%;
-    --secondary-foreground: 248 250 252;
+    --secondary: 217 33% 18%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 15 23% 15%;
-    --muted-foreground: 226 14% 65%;
+    --muted: 217 33% 18%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 15 23% 15%;
-    --accent-foreground: 30 100% 70%;
+    --accent: 217 33% 18%;
+    --accent-foreground: 215 100% 70%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 248 250 252;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
 
     --success: 142 76% 36%;
-    --success-foreground: 248 250 252;
+    --success-foreground: 210 40% 98%;
     --success-light: 142 69% 45%;
 
-    --warning: 32 95% 44%;
-    --warning-foreground: 248 250 252;
+    --warning: 25 95% 53%;
+    --warning-foreground: 210 40% 98%;
     --warning-light: 43 96% 50%;
 
     --danger: 0 84% 60%;
-    --danger-foreground: 248 250 252;
+    --danger-foreground: 210 40% 98%;
     --danger-light: 0 91% 65%;
 
-    --border: 15 23% 20%;
-    --input: 15 23% 20%;
-    --ring: 30 100% 70%;
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 215 100% 70%;
 
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
     --gradient-success: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success-light)));
     --gradient-warning: linear-gradient(135deg, hsl(var(--warning)), hsl(var(--warning-light)));
     --gradient-danger: linear-gradient(135deg, hsl(var(--danger)), hsl(var(--danger-light)));
-    --gradient-subtle: linear-gradient(135deg, hsl(15 23% 8%), hsl(15 23% 12%), hsl(15 23% 15%));
+    --gradient-subtle: linear-gradient(135deg, hsl(222 84% 8%), hsl(217 33% 12%), hsl(215 25% 15%));
 
     --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.3);
     --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.4);
-    --shadow-card: 0 4px 20px -2px hsl(15 23% 20% / 0.5);
+    --shadow-card: 0 4px 20px -2px hsl(217 33% 18% / 0.5);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
