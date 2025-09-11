@@ -9,7 +9,7 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Base colors */
-    --background: 248 250 252;
+    --background: 241 245 249;
     --foreground: 15 23 42;
 
     --card: 255 255 255;
@@ -57,7 +57,7 @@ All colors MUST be HSL.
     --gradient-success: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success-light)));
     --gradient-warning: linear-gradient(135deg, hsl(var(--warning)), hsl(var(--warning-light)));
     --gradient-danger: linear-gradient(135deg, hsl(var(--danger)), hsl(var(--danger-light)));
-    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(226 58% 98%));
+    --gradient-subtle: linear-gradient(135deg, hsl(218 100% 97%), hsl(220 100% 95%), hsl(226 100% 94%));
 
     /* Shadows and effects */
     --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.2);
@@ -132,7 +132,7 @@ All colors MUST be HSL.
     --gradient-success: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success-light)));
     --gradient-warning: linear-gradient(135deg, hsl(var(--warning)), hsl(var(--warning-light)));
     --gradient-danger: linear-gradient(135deg, hsl(var(--danger)), hsl(var(--danger-light)));
-    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(15 23% 8%));
+    --gradient-subtle: linear-gradient(135deg, hsl(15 23% 8%), hsl(15 23% 12%), hsl(15 23% 15%));
 
     --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.3);
     --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.4);
