@@ -1,7 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { AlertTriangle, CheckCircle, TrendingUp, BarChart3, Shield } from "lucide-react";
+import { AlertTriangle, CheckCircle, TrendingUp, BarChart3, Shield, Lightbulb, Target, Users, BookOpen } from "lucide-react";
+import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 
 interface PredictionData {
   willBeLayedOff: boolean;
@@ -46,6 +47,98 @@ const PredictionResults = ({ prediction }: PredictionResultsProps) => {
     }
   };
 
+  // Prepare chart data
+  const pieChartData = [
+    { name: 'Layoff Risk', value: prediction.confidence, color: '#ef4444' },
+    { name: 'Job Security', value: 100 - prediction.confidence, color: '#22c55e' }
+  ];
+
+  const factorsChartData = prediction.factors.map(factor => ({
+    name: factor.name.replace(' Factor', '').replace(' Rating', '').replace(' Range', '').replace(' Risk', ''),
+    impact: Math.abs(factor.impact),
+    type: factor.isPositive ? 'Positive' : 'Negative',
+    fill: factor.isPositive ? '#22c55e' : '#ef4444'
+  }));
+
+  // Generate recommendations based on risk factors
+  const generateRecommendations = () => {
+    const recommendations = [];
+    
+    // Performance-based recommendations
+    const perfFactor = prediction.factors.find(f => f.name.includes('Performance'));
+    if (perfFactor && !perfFactor.isPositive) {
+      recommendations.push({
+        icon: Target,
+        title: "Performance Improvement Plan",
+        description: "Implement a structured performance improvement plan with clear goals, regular check-ins, and skill development opportunities.",
+        priority: "High"
+      });
+    }
+
+    // Department-based recommendations
+    const deptFactor = prediction.factors.find(f => f.name.includes('Department'));
+    if (deptFactor && !deptFactor.isPositive) {
+      recommendations.push({
+        icon: Users,
+        title: "Cross-Department Training",
+        description: "Consider cross-training in more stable departments to increase versatility and reduce department-specific risk.",
+        priority: "Medium"
+      });
+    }
+
+    // Tenure-based recommendations
+    const tenureFactor = prediction.factors.find(f => f.name.includes('Tenure'));
+    if (tenureFactor && !tenureFactor.isPositive) {
+      if (tenureFactor.impact > 15) {
+        recommendations.push({
+          icon: BookOpen,
+          title: "Onboarding & Mentorship",
+          description: "Pair with experienced mentors and provide comprehensive onboarding to accelerate integration and value delivery.",
+          priority: "High"
+        });
+      } else {
+        recommendations.push({
+          icon: Target,
+          title: "Career Development Path",
+          description: "Create a clear career progression plan to retain long-term employees and leverage their institutional knowledge.",
+          priority: "Medium"
+        });
+      }
+    }
+
+    // Salary-based recommendations
+    const salaryFactor = prediction.factors.find(f => f.name.includes('Salary'));
+    if (salaryFactor && !salaryFactor.isPositive) {
+      recommendations.push({
+        icon: TrendingUp,
+        title: "Compensation Review",
+        description: "Conduct a market-rate analysis and consider salary adjustments to align with industry standards and performance.",
+        priority: "Medium"
+      });
+    }
+
+    // General recommendations based on risk level
+    if (prediction.riskLevel === "High") {
+      recommendations.push({
+        icon: Shield,
+        title: "Immediate Intervention Required",
+        description: "Schedule urgent one-on-one meetings to address concerns and develop an action plan to improve job security.",
+        priority: "Critical"
+      });
+    } else if (prediction.riskLevel === "Medium") {
+      recommendations.push({
+        icon: Lightbulb,
+        title: "Proactive Engagement",
+        description: "Increase regular check-ins and provide additional support to prevent risk escalation.",
+        priority: "Medium"
+      });
+    }
+
+    return recommendations;
+  };
+
+  const recommendations = generateRecommendations();
+
   return (
     <div className="space-y-6">
       {/* Main Prediction Card */}
@@ -84,40 +177,36 @@ const PredictionResults = ({ prediction }: PredictionResultsProps) => {
 
       {/* Risk Analysis Dashboard */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Probability Visualization */}
+        {/* Pie Chart Visualization */}
         <Card className="shadow-card border-border/50">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-primary" />
-              Risk Probability
+              Risk Distribution
             </CardTitle>
-            <CardDescription>Visual representation of layoff probability</CardDescription>
+            <CardDescription>Visual breakdown of layoff risk vs job security</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span>Layoff Risk</span>
-                <span className="font-semibold">{Math.round(prediction.confidence)}%</span>
-              </div>
-              <Progress 
-                value={prediction.confidence} 
-                className={`h-3 ${
-                  prediction.riskLevel === "Low" ? "[&>div]:bg-gradient-success" :
-                  prediction.riskLevel === "Medium" ? "[&>div]:bg-gradient-warning" :
-                  "[&>div]:bg-gradient-danger"
-                }`}
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span>Job Security</span>
-                <span className="font-semibold">{Math.round(100 - prediction.confidence)}%</span>
-              </div>
-              <Progress 
-                value={100 - prediction.confidence} 
-                className="h-3 [&>div]:bg-gradient-success"
-              />
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={pieChartData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={100}
+                    paddingAngle={5}
+                    dataKey="value"
+                  >
+                    {pieChartData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip formatter={(value) => [`${value}%`, '']} />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
             </div>
           </CardContent>
         </Card>
@@ -162,35 +251,107 @@ const PredictionResults = ({ prediction }: PredictionResultsProps) => {
         </Card>
       </div>
 
-      {/* Contributing Factors */}
+      {/* Contributing Factors with Chart */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card className="shadow-card border-border/50">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <BarChart3 className="h-5 w-5 text-primary" />
+              Factor Impact Analysis
+            </CardTitle>
+            <CardDescription>
+              Visual representation of factors affecting the prediction
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={factorsChartData} layout="horizontal">
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis type="number" />
+                  <YAxis dataKey="name" type="category" width={80} />
+                  <Tooltip 
+                    formatter={(value, name) => [`${value}%`, name === 'impact' ? 'Impact' : name]}
+                    labelFormatter={(label) => `Factor: ${label}`}
+                  />
+                  <Bar dataKey="impact" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="shadow-card border-border/50">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <BarChart3 className="h-5 w-5 text-primary" />
+              Factor Details
+            </CardTitle>
+            <CardDescription>
+              Detailed breakdown of contributing factors
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {prediction.factors.map((factor, index) => (
+                <div key={index} className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium">{factor.name}</span>
+                    <span className={`text-sm font-semibold ${
+                      factor.isPositive ? "text-success" : "text-danger"
+                    }`}>
+                      {factor.isPositive ? "+" : "-"}{Math.abs(factor.impact)}%
+                    </span>
+                  </div>
+                  <Progress 
+                    value={Math.abs(factor.impact)} 
+                    className={`h-2 ${
+                      factor.isPositive ? "[&>div]:bg-gradient-success" : "[&>div]:bg-gradient-danger"
+                    }`}
+                  />
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Recommendations Section */}
       <Card className="shadow-card border-border/50">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <BarChart3 className="h-5 w-5 text-primary" />
-            Contributing Factors
+            <Lightbulb className="h-5 w-5 text-primary" />
+            AI-Generated Recommendations
           </CardTitle>
           <CardDescription>
-            Key factors influencing the prediction (positive factors reduce risk, negative increase risk)
+            Actionable insights and strategies to improve employee retention and reduce layoff risk
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
-            {prediction.factors.map((factor, index) => (
-              <div key={index} className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium">{factor.name}</span>
-                  <span className={`text-sm font-semibold ${
-                    factor.isPositive ? "text-success" : "text-danger"
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {recommendations.map((rec, index) => (
+              <div key={index} className="p-4 rounded-lg border border-border/50 bg-muted/30 space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className={`p-2 rounded-lg ${
+                    rec.priority === "Critical" ? "bg-gradient-danger" :
+                    rec.priority === "High" ? "bg-gradient-warning" :
+                    "bg-gradient-primary"
                   }`}>
-                    {factor.isPositive ? "+" : "-"}{Math.abs(factor.impact)}%
-                  </span>
+                    <rec.icon className="h-4 w-4 text-white" />
+                  </div>
+                  <div className="flex-1 space-y-1">
+                    <div className="flex items-center gap-2">
+                      <h4 className="font-semibold text-sm">{rec.title}</h4>
+                      <Badge 
+                        variant={rec.priority === "Critical" ? "destructive" : "secondary"}
+                        className="text-xs"
+                      >
+                        {rec.priority}
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground">{rec.description}</p>
+                  </div>
                 </div>
-                <Progress 
-                  value={Math.abs(factor.impact)} 
-                  className={`h-2 ${
-                    factor.isPositive ? "[&>div]:bg-gradient-success" : "[&>div]:bg-gradient-danger"
-                  }`}
-                />
               </div>
             ))}
           </div>
